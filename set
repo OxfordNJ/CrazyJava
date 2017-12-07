@@ -1,0 +1,26 @@
+package chapter8;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Scanner;
+public class Main1 {
+	/**
+	* 创建一个set集合，并用set集合保存用户通过控制台输入的20个字符串
+	* 由于需要较多的插入操作所以采用HashSet
+	* 利用循坏控制输入
+  * HashSet不可存入重复的数据
+	*/
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入一组字符串");
+		Set<String> set = new HashSet<String>();
+		for(int i=0;i<20;i++){
+			String s = sc.next();
+			set.add(s);
+		}
+		System.out.println(set);
+		sc.close();
+	}
+
+}
+
+
