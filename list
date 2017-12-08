@@ -1,0 +1,23 @@
+package chapter8;
+import java.util.ArrayList;
+import java.util.List;
+public class Main2 {
+	/**
+	 List集合里的元素有序可重，List集合有专用迭代器ListIterator可实现反向迭代。
+	 ArrayList底层使用一个智能数组实现可动态扩展。
+	 */
+	public static void main(String[] args){
+		List<Integer> list = new ArrayList<Integer>();
+		for(int i=0;i<10;i++){
+			list.add(i);
+		}
+		System.out.println(list);
+		System.out.println(list.get(5));
+		list.add(8, 88);
+		System.out.println(list);
+		System.out.println(list.indexOf(4));
+		list.remove(3);
+		System.out.println(list);
+	}
+
+}
