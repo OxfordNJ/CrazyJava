@@ -3,8 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 public class Main2 {
 	/**
-	 List集合里的元素有序可重，List集合有专用迭代器ListIterator可实现反向迭代。
-	 ArrayList底层使用一个智能数组实现可动态扩展。
+	 List集合的基本特征是元素有序，可重复，每个元素都有顺序索引。因此List集合可以像数组一样使用。
+         List集合有一个专用迭代器ListIterator，可以实现反向迭代。
+         ArrayList和Vector底层使用一个智能数组实现，可动态扩展（ensureCapacity(int i)重新分类空间)，
+         在java.util.Arrays 的内部也定义了一个ArrayList (通过asList()方法返回)，但这是一个不可变定长数组，不能增加，删除数组元素，否则会抛出异常。
+         Vector是一个古老的集合实现类，Vector所拥有的功能ArrayList基本都有。但是Vector是一个线程安全类，性能上会比ArrayList稍低。另外Vector还有一个子类Stack，实现了栈结构。
+         LinkedList是List的实现类，同时又是Deque的实现类，因此LinkedList同时具有ArrayList（随机存取）和ArrayDeque(双端队列,栈)的功能。但是LinkedList的内部实现完全不同，LinkedList内部使用链表实现，虽然也LinkedList表面上使用的是index索引数组方式的随机访问，但是内部实现的时候使用index关联了链表的顺序，依然使用的是迭代访问，所以性能上比ArrayList差。不过插入和删除性能更好。
 	 */
 	public static void main(String[] args){
 		List<Integer> list = new ArrayList<Integer>();
