@@ -1,0 +1,42 @@
+/*
+  Map 的基本特征是key不重复。key和set存在单向一对一关系。
+  Map接口中有两个重要的数据结构，一个是keySetp，用Set集合保存了所有key；一个是内部类Entry，用来封装key-value对，每个元素对应一个Entry对象，保存在Map的全局数组transient Entry table[];中。
+  Map的entrySet()方法可以返回一个Entry对象组成的的Set集合的视图。注意entrySet中并没有使用一个Set对象来保存所有Entry集合，而是定义一个EntrySet内部类，其中有个iterator()方法可以迭代访问map的所有Entry对象，调用EntrySet的iterator()方法就相当于得到了Entry集合的视图。
+  HashMap中，每次put进一个新元素时，都会在底层new一个Entry类来关联key-value，并将Entry对象保存在Map的全局数组transient Entry table[];中
+  由上面可知遍历HashMap至少有四种方法。1)集合通用方法value = iterator.next。 2)map常规方法 value=map.get(key).  3)遍历entrySet集合。  value=map.entrySet.getValue(). 4)遍历values集合 value=map.values...
+  HashMap和Hashtable的关系，可以类比HashSet跟Vector.  Hashtable是一个古老的，线程安全的集合。
+  HashMap跟HashSet判断元素是否相等的标准一样，都是需要同时满足equals为true，且元素hashCode值相等才认为是相同元素。 equals为true但hashCode不相等的两个元素可以存入map中，但是不能正常工作；equals为false但hashCode相等会认为是不同元素，存放在同一个地方，用链表关联value，性能低。
+  LinkedHashMap跟linkedHashSet一样，也用（双向）链表维护元素的插入顺序(key顺序）。
+**/
+package chapter8;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.LinkedHashSet;
+import java.util.Set;
+public class Main3 {
+	public static void main(String[] args){
+		String[] str = {"a","b","a","b","c","a","b","c","b"};
+		Map<String,Integer> map = new HashMap();
+		Set<String> set = new LinkedHashSet();
+		for(int i=0;i<str.length;i++){
+			set.add(str[i]);
+		}
+		System.out.println(set);
+		String key;
+		Iterator<String> it = set.iterator();
+		while(it.hasNext()){
+			int val = 0;
+			key = it.next();
+			for(int i=0;i<str.length;i++){
+				if(str[i] == key)
+					val++;
+				
+			}
+			map.put(key, val);
+		}
+		System.out.println(map);
+	}
+
+}
